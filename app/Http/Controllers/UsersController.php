@@ -21,7 +21,7 @@ class UsersController extends Controller
     }
     else{
         return view('welcome');
-    }
+      }
     }
     
      public function show($id)
