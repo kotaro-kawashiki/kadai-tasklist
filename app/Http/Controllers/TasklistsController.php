@@ -101,7 +101,7 @@ class TasklistsController extends Controller
         ]);
         }
          else {
-            return redirect('/')->back();
+            return redirect('/');
         }
 
         
