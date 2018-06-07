@@ -10,6 +10,8 @@ class UsersController extends Controller
 {
     public function index()
     {
+         if (\Auth::check()){
+        
         $users = User::paginate(10);
         
         
@@ -17,8 +19,10 @@ class UsersController extends Controller
             'users' => $users,
         ]);
     }
-    
-   
+    else{
+        return view('welcome');
+    }
+    }
     
      public function show($id)
     {
