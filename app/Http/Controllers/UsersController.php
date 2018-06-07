@@ -12,7 +12,7 @@ class UsersController extends Controller
     {
          if (\Auth::check()){
         
-        $users = User::paginate(10);
+        $users = \Auth::user()->paginate(10);
         
         
         return view('users.index', [
