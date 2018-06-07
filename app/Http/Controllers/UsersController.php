@@ -12,7 +12,7 @@ class UsersController extends Controller
     {
          if (\Auth::check()){
         
-        $users = \Auth::user()->paginate(10);
+        $users = User::paginate(10);
         
         
         return view('users.index', [
@@ -21,15 +21,12 @@ class UsersController extends Controller
     }
     else{
         return view('welcome');
-      }
+    }
     }
     
      public function show($id)
     {
         $user = User::find($id);
-        if (\Auth::check()){
-        
-        $user = \Auth::user();
         $tasklists = $user->tasklists()->orderBy('created_at', 'desc')->paginate(10);
 
         $data = [
@@ -40,9 +37,5 @@ class UsersController extends Controller
         $data += $this->counts($user);
 
         return view('users.show', $data);
-        }
-        else{
-            return view('welcome');
-        }
     }
 }
