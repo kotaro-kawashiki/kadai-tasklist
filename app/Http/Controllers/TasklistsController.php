@@ -94,10 +94,17 @@ class TasklistsController extends Controller
     public function edit($id)
     {
          $tasklist = tasklist::find($id);
-
-        return view('tasklists.edit', [
+         
+         if (\Auth::user()->id === $tasklist->user_id) {
+            return view('tasklists.edit', [
             'tasklist' => $tasklist,
         ]);
+        }
+         else {
+            return redirect('/')->back();
+        }
+
+        
         
         
     }
